@@ -17,10 +17,11 @@ function Dacia() {
       <div className="">
         <Navbar/>
         <div className="text-center text-3xl font-semibold font-serif"> Dacia</div>
-        <div className="flex justify-center">
+        <div className="grid grid-cols-3 gap-8 mt-5">
                 {donne.map(item=><>
-              <div className="flex justify-between">
-                <img src=  {item.ImageS2} alt="" className='flex h-[200px] w-[200px]'/>
+              <div className=" bg-gray-50 gap-10 border border-gray-200 rounded-xl shadow-xl p-2">
+                <img src=  {item.ImageS2} alt="" className='flex  justify-center items-center h-[200px] w-[200px]'/>
+                <h1 className='text-center font-semibold'>{item.title}</h1>
               </div>
                 </>)}
         </div>
