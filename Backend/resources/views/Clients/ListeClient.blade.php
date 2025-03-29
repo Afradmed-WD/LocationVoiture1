@@ -1,0 +1,108 @@
+@extends('layouts.master')
+@section('main')
+    <div class="">
+        <div class="">
+            <div class="bg-white w-[1000px]  h-[10vh] border border-gray-50 flex justify-between items-center mt-10 rounded-xl">
+                <div class="mx-10 flex items-center space-x-2">
+                    <div>
+                        <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.5 20.125C10.5 20.125 9 20.125 9 18.6875C9 17.25 10.5 12.9375 16.5 12.9375C22.5 12.9375 24 17.25 24 18.6875C24 20.125 22.5 20.125 22.5 20.125H10.5Z" fill="#F29036"/>
+                            <path d="M16.5 11.5C18.9853 11.5 21 9.56923 21 7.1875C21 4.80577 18.9853 2.875 16.5 2.875C14.0147 2.875 12 4.80577 12 7.1875C12 9.56923 14.0147 11.5 16.5 11.5Z" fill="#F29036"/>
+                            <path d="M7.82454 20.125C7.61334 19.7166 7.5 19.2325 7.5 18.6875C7.5 16.739 8.51858 14.7352 10.4039 13.34C9.57914 13.0871 8.61764 12.9375 7.5 12.9375C1.5 12.9375 0 17.25 0 18.6875C0 20.125 1.5 20.125 1.5 20.125H7.82454Z" fill="#F29036"/>
+                            <path d="M6.75 11.5C8.82107 11.5 10.5 9.89102 10.5 7.90625C10.5 5.92148 8.82107 4.3125 6.75 4.3125C4.67893 4.3125 3 5.92148 3 7.90625C3 9.89102 4.67893 11.5 6.75 11.5Z" fill="#F29036"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-xl text-black font-serif mx-4">Clients</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white w-[1000px] mt-8 h-[90vh]  rounded-xl p-6">
+            <div class="flex justify-start items-center mx-6 my-5 gap-5">
+                <div class="flex items-center border  rounded-xl p-2">
+                    <input type="text" class="focus:outline-none px-2 border-[#F29036] flex-1" id="searchInput" placeholder="Recherche" aria-label="Rechercher">
+                    <button type="submit">
+                        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.0744 17.7015C14.4466 17.7015 17.991 14.1571 17.991 9.78483C17.991 5.41258 14.4466 1.86816 10.0744 1.86816C5.70213 1.86816 2.15771 5.41258 2.15771 9.78483C2.15771 14.1571 5.70213 17.7015 10.0744 17.7015Z" stroke="#F29036" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M18.8244 18.5348L17.1577 16.8682" stroke="#F29036" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                    <div class="">
+                    <a href="/register" class="border border-transparent bg-[#F29036] flex justify-center items-center space-x-2 text-white rounded-xl p-2 px-4">
+                    Ajouter
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 3V15" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 9L3 9" stroke="#FFFEFE" stroke-opacity="0.7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                         
+                    </a>    
+                    </div>         
+            </div>
+            <div class="">
+                <table class="min-w-full border border-gray-200 rounded-xl shadow-md text-gray-700" id="reservationTable">
+                    <thead class="bg-gray-100">
+                        <tr class="text-left border-b">
+                            <th class="p-3"><input type="checkbox" name="item" id="item"></th>
+                            <th class="p-3">Nom</th>
+                            <th class="p-3">Prenom</th>
+                            <th class="p-3">Email</th>
+                            <th class="p-3">Telephone</th>
+                            <th class="p-3">Cin</th>
+                            <th class="p-3">Adresse</th>
+                            <th class="p-3">Date_Naissance</th>
+                            <th class="p-3">Action</th>
+                            
+                        </tr>
+                    
+                        
+                    </thead>
+                    <tbody>
+                        @foreach ($data1 as $item)
+                            <tr>
+                                <td class="p-3"><input type="checkbox" name="item" id="item"></td>
+                                <td class="p-3">{{$item->nom}}</td>
+                                <td class="p-3">{{$item->prenom}}</td>
+                                <td class="p-3">{{$item->email}}</td>
+                                <td class="p-3">+212{{$item->telephome}}</td>
+                                <td class="p-3">{{$item->Cin}}</td>
+                                <td class="p-3">{{$item->adresse}}</td>
+                                <td class="p-3">{{$item->date_naissance}}</td>
+                                <td class="p-3">
+                                    <div class="flex items-center">
+                                        <div class="flex items-center">
+                                            <form action="{{route('destroy1',$item->id)}}" method="POST">
+                                                 @csrf
+                                                 @method('DELETE')
+                                                 <button onclick="return confirm('est ce que vraiment doit etre suprimer ce voiture')">
+                                                     
+                                                         <svg width="22" height="24" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                             <path d="M3.21956 5.6149H18.3395L17.5633 18.0342C17.4563 19.7456 17.4028 20.6013 17.0355 21.2504C16.7121 21.8219 16.2228 22.2816 15.6323 22.5687C14.9615 22.8948 14.1041 22.8948 12.3894 22.8948H9.16964C7.45489 22.8948 6.59752 22.8948 5.92675 22.5687C5.33623 22.2816 4.84688 21.8219 4.52351 21.2504C4.15621 20.6013 4.10273 19.7456 3.99576 18.0342L3.21956 5.6149Z" fill="#EA4335" fill-opacity="0.05"/>
+                                                             <path d="M1.05957 4.8049C0.612222 4.8049 0.249575 5.16755 0.249575 5.6149C0.249575 6.06224 0.612222 6.42489 1.05957 6.42489V4.8049ZM6.94253 2.48893L6.21804 2.12669L6.21804 2.12669L6.94253 2.48893ZM20.4995 6.42489C20.9468 6.42489 21.3094 6.06224 21.3094 5.6149C21.3094 5.16755 20.9468 4.8049 20.4995 4.8049V6.42489ZM14.6165 2.48893L15.341 2.12669L15.341 2.12669L14.6165 2.48893ZM3.21956 5.6149V4.8049C2.99596 4.8049 2.78231 4.89733 2.62921 5.06029C2.47611 5.22326 2.39719 5.44226 2.41114 5.66542L3.21956 5.6149ZM18.3395 5.6149L19.1479 5.66542C19.1618 5.44226 19.0829 5.22326 18.9298 5.06029C18.7767 4.89733 18.5631 4.8049 18.3395 4.8049V5.6149ZM5.92675 22.5687L6.2809 21.8402L5.92675 22.5687ZM3.99576 18.0342L4.80418 17.9837L3.99576 18.0342ZM4.52351 21.2504L5.22847 20.8515L5.22847 20.8515L4.52351 21.2504ZM17.5633 18.0342L16.7548 17.9837L16.7548 17.9837L17.5633 18.0342ZM17.0355 21.2504L16.3305 20.8515L16.3305 20.8515L17.0355 21.2504ZM15.6323 22.5687L15.2781 21.8402L15.6323 22.5687ZM1.05957 6.42489H5.37954V4.8049H1.05957V6.42489ZM6.10403 5.97714L7.66701 2.85117L6.21804 2.12669L4.65506 5.25266L6.10403 5.97714ZM8.87448 2.10492H12.6845V0.484927H8.87448V2.10492ZM5.37954 6.42489H16.1795V4.8049H5.37954V6.42489ZM16.1795 6.42489H20.4995V4.8049H16.1795V6.42489ZM13.892 2.85117L15.455 5.97714L16.904 5.25266L15.341 2.12669L13.892 2.85117ZM12.6845 2.10492C13.1959 2.10492 13.6633 2.39382 13.892 2.85117L15.341 2.12669C14.8379 1.12051 13.8095 0.484927 12.6845 0.484927V2.10492ZM7.66701 2.85117C7.89569 2.39382 8.36314 2.10492 8.87448 2.10492V0.484927C7.74953 0.484927 6.72114 1.12051 6.21804 2.12669L7.66701 2.85117ZM3.21956 6.42489H18.3395V4.8049H3.21956V6.42489ZM17.531 5.56437L16.7548 17.9837L18.3717 18.0847L19.1479 5.66542L17.531 5.56437ZM12.3894 22.0848H9.16964V23.7048H12.3894V22.0848ZM4.80418 17.9837L4.02797 5.56437L2.41114 5.66542L3.18735 18.0847L4.80418 17.9837ZM9.16964 22.0848C8.29933 22.0848 7.6939 22.0842 7.22092 22.0466C6.75777 22.0097 6.4884 21.9411 6.2809 21.8402L5.57259 23.2972C6.03587 23.5224 6.53057 23.6168 7.09248 23.6615C7.64456 23.7054 8.32519 23.7048 9.16964 23.7048V22.0848ZM3.18735 18.0847C3.24002 18.9275 3.28188 19.6069 3.36014 20.1551C3.4398 20.7132 3.56487 21.201 3.81855 21.6493L5.22847 20.8515C5.11485 20.6507 5.02953 20.3862 4.96388 19.9262C4.89683 19.4565 4.85847 18.8523 4.80418 17.9837L3.18735 18.0847ZM6.2809 21.8402C5.83801 21.6249 5.471 21.2801 5.22847 20.8515L3.81855 21.6493C4.22276 22.3636 4.83445 22.9383 5.57259 23.2972L6.2809 21.8402ZM16.7548 17.9837C16.7006 18.8523 16.6622 19.4565 16.5951 19.9262C16.5295 20.3862 16.4442 20.6507 16.3305 20.8515L17.7405 21.6493C17.9942 21.201 18.1192 20.7132 18.1989 20.1551C18.2771 19.6069 18.319 18.9275 18.3717 18.0847L16.7548 17.9837ZM12.3894 23.7048C13.2338 23.7048 13.9145 23.7054 14.4665 23.6615C15.0285 23.6168 15.5232 23.5224 15.9864 23.2972L15.2781 21.8402C15.0706 21.9411 14.8013 22.0097 14.3381 22.0466C13.8651 22.0842 13.2597 22.0848 12.3894 22.0848V23.7048ZM16.3305 20.8515C16.088 21.2801 15.721 21.6249 15.2781 21.8402L15.9864 23.2972C16.7246 22.9383 17.3363 22.3636 17.7405 21.6493L16.3305 20.8515Z" fill="#EA4335" fill-opacity="0.77"/>
+                                                             </svg>
+                                                             
+                                                 </button>
+                                            </form>
+                                            </div>
+                                         </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function() {
+            let filter = this.value.toLowerCase();
+            document.querySelectorAll('#reservationTable tbody tr').forEach(row => {
+                row.style.display = row.textContent.toLowerCase().includes(filter) ? '' : 'none';
+            });
+        });
+    </script>
+    
+@endsection
