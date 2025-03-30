@@ -1,39 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Customaxios from "../axios/Customaxios";
 
-const DateTimePicker = () => {
-  const [date, setDate] = useState("");
-  const [showPicker, setShowPicker] = useState(false);
+function Avis() {
+  const [avis, setAvis] = useState([]);
 
-  const handleDateChange = (event) => {
-    setDate(event.target.value);
-    setShowPicker(false);
-  };
+  useEffect(() => {
+    Customaxios.get("/avis").then(({ data }) => {
+      Promise.all(data.map((a) => Customaxios.get(`/client/${a.id_client}`))).then((res) => {
+        setAvis(data.map((a, i) => ({ ...a, nom: `${res[i].data.nom} ${res[i].data.prenom}` })));
+      });
+    });
+  }, []);
 
   return (
     <div>
-      <h2>Sélectionnez une date et une heure</h2>
-      <button onClick={() => setShowPicker(true)}>Choisir la date</button>
-
-      {showPicker && (
-        <div style={{
-          position: "absolute",
-          background: "white",
-          padding: "10px",
-          border: "1px solid #ccc",
-          boxShadow: "2px 2px 10px rgba(0,0,0,0.2)"
-        }}>
-          <input
-            type="datetime-local"
-            value={date}
-            onChange={handleDateChange}
-          />
-          <button onClick={() => setShowPicker(false)}>Fermer</button>
-        </div>
-      )}
-
-      {date && <p>Date sélectionnée : {date}</p>}
+      <p className="text-3xl font-semibold text-center py-4">Avis de nos clients</p>
+      <div className="grid grid-cols-3 gap-4 mx-10">
+        {avis.map((item) => (
+          <div key={item.id} className="bg-white border rounded-xl shadow-xl p-4">
+            <p className="my-4">{item.commentaire}</p>
+            <p className="bg-[#5937E0] text-white text-center p-4 rounded-b-xl">{item.nom}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
-};
+}
 
-export default DateTimePicker;
+export default Avis;

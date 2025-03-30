@@ -4,12 +4,14 @@ import { useParams } from "react-router-dom";
 
 function Avis() {
   const [donne, setdonne] = useState([]);
-  const fetchdataWithaxios = async () => {
-    const data = await Customaxios.get("/avis");
-    setdonne(data.data);
-  };
+  
   useEffect(() => {
-    fetchdataWithaxios();
+    Customaxios.get('/avis').then(({data})=>{
+      Promise.all(data.map((a)=>Customaxios.get(`client/${a.id_client}`)))
+      .then(res=>{
+        setdonne(data.map((a,i)=>({...a,nom:`${res[i].data.nom} ${res[i].data.prenom}`})));
+      });
+    });
   });
   return (
     <div>
@@ -35,7 +37,7 @@ function Avis() {
               </div>
               
               <div className="relative bg-[#5937E0] h-[50%] border  rounded-bl-xl rounded-br-xl text-white text-center w-full p-4 py-8">
-                {item.id_client}
+                {item.nom}
                 <div className="absolute top-[-20px] right-44 ">
                 <img src="https://hips.hearstapps.com/hmg-prod/images/lionel-messi-celebrates-after-their-sides-third-goal-by-news-photo-1686170172.jpg?crop=0.66653xw:1xh;center,top&resize=640:*" alt=""  className="flex border border-transparent rounded-full h-[50px] justify-center"/>
               </div>
