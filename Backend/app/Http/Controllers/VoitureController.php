@@ -142,12 +142,12 @@ class VoitureController extends Controller
         $data1->ImageS1 = $request->ImageS1;
         $data1->ImageS2 = $request->ImageS2;
         $data1->ImageS3 = $request->ImageS3;
-        $data1-> title= $request->title;
+        $data1->title= $request->title;
         $data1->type = $request->type;
         $data1->prix_jour = $request->prix_jour;
         $data1->status = $request->status;
-        $data1-> consomation= $request->consomation;
-        $data1-> category= $request->category;
+        $data1->consomation= $request->consomation;
+        $data1->category= $request->category;
         $data1->description = $request->description;
         $data1->dor = $request->dor;
         $data1->save();

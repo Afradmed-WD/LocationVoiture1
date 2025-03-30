@@ -94,7 +94,7 @@ function Contact() {
                 />
               </svg>
               <div className="flex-col">
-              <div className="text-xl font-semibold mt-5"> Emplacement de Note bureau </div>
+              <div className="text-xl font-semibold mt-5"> Emplacement de bureau </div>
                 <div className="text-lg mt-5">  Hay Taddart Anza Agadir </div>
                 <div className="text-lg mx-2">  Immeuble B NR 76 </div>
               </div>

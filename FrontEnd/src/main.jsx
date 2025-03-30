@@ -15,6 +15,8 @@ import About from './Pages/About';
 import Dacia from './Category/Dacia';
 import Renault from './Category/Renault';
 import Avis from './Pages/Avis';
+import Reservation from './Pages/Reservation';
+import DateTimePicker from './Pages/Tester';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -32,6 +34,8 @@ createRoot(document.getElementById('root')).render(
         <Route path="/category/dacia" element={<Dacia />} />
         <Route path="/category/renault" element={<Renault />} />
         <Route path="/avis" element={<Avis />} />
+        <Route path="/reserver" element={<Reservation />} />
+        <Route path="/test" element={<DateTimePicker />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

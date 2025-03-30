@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./footer";
 import Avis from "./Avis";
+import { Link } from "react-router-dom";
 
 function Details() {
     const [donne, setDonne] = useState([]);
@@ -116,7 +117,10 @@ function Details() {
                                 </div>
                             </div>
                             <div className="">
-                                <button className="text-white px-8 bg-[#5937E0] border border-gray-100 rounded-xl p-2">Reserver</button>
+                            <Link to={'/reserver'}>
+                            <button className="text-white px-8 bg-[#5937E0] border border-gray-100 rounded-xl p-2">Reserver</button>
+
+                            </Link>
                             </div>
                         </div>
                     </div>

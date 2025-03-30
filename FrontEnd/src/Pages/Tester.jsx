@@ -1,57 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import Customaxios from '../axios/Customaxios';
+import React, { useState } from "react";
 
+const DateTimePicker = () => {
+  const [date, setDate] = useState("");
+  const [showPicker, setShowPicker] = useState(false);
 
-const Tester = () => {
-  const [data, setData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await Customaxios.get('/products'); // Replace with your endpoint
-      setData(response.data);
-    };
-    fetchData();
-  }, []);
-
-  const totalPages = Math.ceil(data.length / itemsPerPage);
-  const currentItems = data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const handleDateChange = (event) => {
+    setDate(event.target.value);
+    setShowPicker(false);
+  };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-semibold mb-4">Data Pagination</h1>
-      <div className="space-y-4">
-        {currentItems.map((item, index) => (
-          <div key={index} className="border p-4 rounded-lg shadow-lg">
-            <h3 className="text-xl font-bold">{item.title}</h3>
-            
-          </div>
-        ))}
-      </div>
-      
-      {/* Pagination Controls */}
-      <div className="flex justify-center items-center space-x-4 mt-6">
-        <button
-          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg disabled:bg-gray-400"
-        >
-          Previous
-        </button>
+    <div>
+      <h2>Sélectionnez une date et une heure</h2>
+      <button onClick={() => setShowPicker(true)}>Choisir la date</button>
 
-        <span className="text-xl font-semibold">{currentPage}</span>
+      {showPicker && (
+        <div style={{
+          position: "absolute",
+          background: "white",
+          padding: "10px",
+          border: "1px solid #ccc",
+          boxShadow: "2px 2px 10px rgba(0,0,0,0.2)"
+        }}>
+          <input
+            type="datetime-local"
+            value={date}
+            onChange={handleDateChange}
+          />
+          <button onClick={() => setShowPicker(false)}>Fermer</button>
+        </div>
+      )}
 
-        <button
-          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-          disabled={currentPage === totalPages}
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg disabled:bg-gray-400"
-        >
-          Next
-        </button>
-      </div>
+      {date && <p>Date sélectionnée : {date}</p>}
     </div>
   );
 };
 
-export default Tester;
+export default DateTimePicker;
