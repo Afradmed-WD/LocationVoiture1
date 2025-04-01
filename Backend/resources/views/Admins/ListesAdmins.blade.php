@@ -30,16 +30,7 @@
                     </button>
                 </div>
                 
-                    <div class="">
-                    <a href="/register" class="border border-transparent bg-[#F29036] flex justify-center items-center space-x-2 text-white rounded-xl p-2 px-4">
-                    Ajouter    
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 3V15" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M15 9L3 9" stroke="#FFFEFE" stroke-opacity="0.7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                         
-                    </a>    
-                    </div>         
+                      
             </div>
             <div class="">
                 <table class="min-w-full border border-gray-200 rounded-xl shadow-md text-gray-700">

@@ -74,7 +74,7 @@
                                         <form action="{{route('destroy',$item->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button onclick="return confirm('est ce que vraiment doit etre suprimer ce voiture')">
+                                            <button onclick="return confirm('est ce que vraiment doit etre suprimer ce commentaire')">
                                             
                                                 <svg width="22" height="24" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M3.21956 5.6149H18.3395L17.5633 18.0342C17.4563 19.7456 17.4028 20.6013 17.0355 21.2504C16.7121 21.8219 16.2228 22.2816 15.6323 22.5687C14.9615 22.8948 14.1041 22.8948 12.3894 22.8948H9.16964C7.45489 22.8948 6.59752 22.8948 5.92675 22.5687C5.33623 22.2816 4.84688 21.8219 4.52351 21.2504C4.15621 20.6013 4.10273 19.7456 3.99576 18.0342L3.21956 5.6149Z" fill="#EA4335" fill-opacity="0.05"/>

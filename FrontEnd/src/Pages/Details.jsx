@@ -4,16 +4,21 @@ import Navbar from "./Navbar";
 import Footer from "./footer";
 import Avis from "./Avis";
 import { Link } from "react-router-dom";
+import ReservationForm from "./Tester";
+import { option } from "framer-motion/client";
 
 function Details() {
     const [donne, setDonne] = useState([]);
+    const [jour,setjour]=useState(1)
     const { id } = useParams();
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/voitures/${id}`)
             .then((item) => item.json())
             .then((item) => setDonne(item));
     });
+    const [isopen,setsopen]=useState(false)
     return (
+        
         <div className="">
             <Navbar />
             <div className="bg-gray-100 w-full min-h-screen">
@@ -113,21 +118,80 @@ function Details() {
                                     <span className="font-bold text-3xl font-serif">{donne.prix_jour} DH</span> /Jour
                                 </div>
                                 <div className="mx-10">
-                                    <del className="text-2xl text-gray-600 font-serif">500 Dh/</del>Jour
+                                    <del className="text-xl text-gray-600 font-serif">500 Dh/</del>Jour
                                 </div>
                             </div>
                             <div className="">
-                            <Link to={'/reserver'}>
-                            <button className="text-white px-8 bg-[#5937E0] border border-gray-100 rounded-xl p-2">Reserver</button>
+                        
+                            <button onClick={()=>setsopen(true)} className="text-white px-8 bg-[#5937E0] border border-gray-100 rounded-xl p-2">Reserver</button>
 
-                            </Link>
+                            </div>
+                        </div>
+                        <div className="flex justify-between items-center mx-10 mt-5">
+                            <div className="">
+                                <select 
+                                 className="border rounded-xl p-2 px-10 mb-2 focus:outline-none focus:ring-2 focus:ring-[#5937E0]" 
+                                 value={jour}
+                                  onChange={(e)=>setjour(e.target.value)}>
+                                    {[...Array(10).keys()].map((n)=>
+                                      (  <option key={ n+ 1} value={ n + 1 }>  { (n + 1 )==10?" 10 Jour + 2 Jour Free" : n+1 +' Jour'}   </option>)
+                                    )
+                                    }
+                                </select>
+                            </div>
+                            <div className="mb-2">
+                                <h1><span className="font-serif">Prix_Total :</span> {donne.prix_jour * jour} MAD</h1>
                             </div>
                         </div>
                     </div>
                 </div>
                 <Avis/>
                 <Footer/>
+             {isopen &&  <div className="fixed inset-0 flex mt-10 items-center"> 
+                <div className=" mx-auto w-[500px] bg-white p-6 mt-10 rounded-lg shadow-md px-6">
+      <h2 className="text-xl font-semibold text-gray-700 mb-4">Formulaire de Réservation</h2>
+      <form className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-600">Nom et Prenom</label>
+          <input type="text" className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
 
+        <div>
+          <label className="block text-sm font-medium text-gray-600">Nom Voiture</label>
+          <input type="text" className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"  value={donne.title}/>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-600">Date Début</label>
+          <input type="datetime-local" className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-600">Date Fin</label>
+          <input type="datetime-local" className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-600">Statut</label>
+          <select className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option selected>En Attente</option>
+            <option disabled>Terminée</option>
+            <option disabled>Annulée</option>
+          </select>
+        </div>
+
+        <button type="submit" className="w-full bg-[#5937E0] text-white py-2 rounded-lg ">
+          Valider
+        </button>
+        <div className="flex justify-end">
+            <button onClick={()=>setsopen(false)}>Fermer</button>
+        </div>
+        
+        
+        
+      </form>
+    </div>
+                </div>}
             </div>
         </div>
     );

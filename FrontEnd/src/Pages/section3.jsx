@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Customaxios from "../axios/Customaxios";
 import { Link } from "react-router-dom";
 import Footer from "./footer";
+import { motion } from "framer-motion";
 function Section3() {
   const [donne, setDonne] = useState([]);
   const [donne1, setDonne1] = useState([]);
@@ -120,7 +121,7 @@ const currentItems = donne.slice(
             <div className="flex">
               <div className="absolute mx-10 top-14  font-serif capitalize font-bold text-2xl w-[50%]">
                 <p>
-                  La meilleure plateforme de location de{" "}
+                  La meilleure plateforme de location de
                   <span className="text-3xl text-white">Voitures</span>
                 </p>
               </div>
@@ -130,9 +131,25 @@ const currentItems = donne.slice(
                 </button>
               </div>
             </div>
-            <div className="relative top-20 w-[90%] my-10">
-              <img src="Images/image1.png" alt="" />
-            </div>
+            <motion.div
+    initial={{
+        x: -100,
+        opacity: 0
+    }}
+    animate={{
+        x: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.3,
+            type: 'tween',
+            ease: 'easeOut',
+            delay: 0.1
+        }
+    }}
+    className="relative top-20 w-[90%] my-10"
+>
+    <img src="Images/image1.png" alt="Image" />
+</motion.div>
           </div>
           <div className="relative">
             <div className="absolute flex w-[95%] mr-[-10px] opacity-85">

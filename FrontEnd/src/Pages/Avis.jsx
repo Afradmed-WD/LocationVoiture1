@@ -20,7 +20,7 @@ function Avis() {
           Avis de nos clients
         </p>
       </div>
-      <div className="grid grid-cols-3 gap-4 items-center mx-10">
+      <div className="grid grid-cols-4 gap-4 items-center mx-10">
         {donne.map((item) => (
           <>
             <div className="bg-white border rounded-xl shadow-xl">
@@ -31,14 +31,16 @@ function Avis() {
 </svg>
 
                 </div>
-                <div className="flex justify-center font-semibold items-center mx-10 my-20">
-                  {item.commentaire}
+                <div className="flex justify-center font-semibold items-center mx-10 my-10">
+                  "{item.commentaire}"
                 </div>
               </div>
               
-              <div className="relative bg-[#5937E0] h-[50%] border  rounded-bl-xl rounded-br-xl text-white text-center w-full p-4 py-8">
-                {item.nom}
-                <div className="absolute top-[-20px] right-44 ">
+              <div className="relative bg-[#5937E0] h-[40%] border  rounded-bl-xl rounded-br-xl text-white text-center w-full p-2.5 py-4">
+               <div className=" font-serif">
+               {item.nom}
+               </div>
+                <div className="absolute top-[-34px] right-32 ">
                 <img src="https://hips.hearstapps.com/hmg-prod/images/lionel-messi-celebrates-after-their-sides-third-goal-by-news-photo-1686170172.jpg?crop=0.66653xw:1xh;center,top&resize=640:*" alt=""  className="flex border border-transparent rounded-full h-[50px] justify-center"/>
               </div>
               </div>

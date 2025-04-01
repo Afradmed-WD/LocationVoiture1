@@ -26,8 +26,7 @@ function Footer() {
           </div>
           <div className="">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure
-              dolores minus debitis maiores quod quasi,
+            AgaCar, votre partenaire de confiance pour l'achat et la vente de voitures. Découvrez nos services de qualité et rejoignez notre communauté sur les réseaux sociaux !
             </p>
           </div>
           <div className="flex gap-7">
@@ -201,7 +200,7 @@ function Footer() {
                 />
               </svg>
             </div>
-            <div className="">Hay Tillila Agadir</div>
+            <div className="">Hay El-Houda Agadir</div>
           </div>
           <div className="flex justify-center items-center ">
             <div className="flex justify-center items-center">
