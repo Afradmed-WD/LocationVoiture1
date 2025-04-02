@@ -101,14 +101,14 @@ function Details() {
                                 {donne.category}
                             </div>
                             <div className="">
-                                <span className="text-gray-600">Capacity:</span> {donne.dor}{" "}
+                                <span className="text-gray-600">Capacity:</span> {donne.dor}
                                 Person
                             </div>
                             <div className="">
                                 <span className="text-gray-600">Steering:</span> {donne.type}
                             </div>
                             <div className="">
-                                <span className="text-gray-600">Consomation:</span>{" "}
+                                <span className="text-gray-600">Consomation:</span>
                                 {donne.consomation}
                             </div>
                         </div>
